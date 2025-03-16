@@ -1,0 +1,178 @@
+classDiagram
+    %% Definición de las capas de la arquitectura
+    
+    %% Capa de Presentación
+    class CapaPresentacion {
+        <<Interface>>
+    }
+    
+    class InterfazWeb {
+        +renderUI()
+        +manejarInteracciones()
+    }
+    
+    class AplicacionMovil {
+        +renderUI()
+        +manejarNotificaciones()
+    }
+    
+    class APIGateway {
+        +enrutarPeticiones()
+        +validarPeticiones()
+    }
+    
+    class PortalAdmin {
+        +gestionarConfiguraciones()
+        +visualizarMetricas()
+    }
+    
+    %% Capa de Aplicación
+    class CapaAplicacion {
+        <<Interface>>
+    }
+    
+    class GestionProyectos {
+        +crearProyecto()
+        +actualizarProyecto()
+        +eliminarProyecto()
+        +asignarRecursos()
+    }
+    
+    class GestionUsuarios {
+        +registrarUsuario()
+        +modificarPermisos()
+        +eliminarUsuario()
+    }
+    
+    class GestionTareas {
+        +crearTarea()
+        +asignarTarea()
+        +actualizarEstado()
+    }
+    
+    class Autenticacion {
+        +validarCredenciales()
+        +generarToken()
+        +verificarPermisos()
+    }
+    
+    class Notificaciones {
+        +enviarNotificacion()
+        +configurarPreferencias()
+    }
+    
+    class Reportes {
+        +generarReporteDesempeño()
+        +exportarDatos()
+    }
+    
+    class Calendario {
+        +programarEvento()
+        +visualizarAgenda()
+    }
+    
+    class Busqueda {
+        +indexarContenido()
+        +realizarBusqueda()
+    }
+    
+    %% Capa de Inteligencia Artificial
+    class CapaIA {
+        <<Interface>>
+    }
+    
+    class PrediccionRetrasos {
+        +analizarTendencias()
+        +calcularProbabilidad()
+        +notificarRiesgo()
+    }
+    
+    class OptimizacionFlujos {
+        +analizarCuellosBottella()
+        +sugerirMejoras()
+    }
+    
+    class Recomendaciones {
+        +analizarDatos()
+        +generarSugerencias()
+    }
+    
+    class AnalisisPredictivo {
+        +procesarDatosHistoricos()
+        +proyectarTendencias()
+    }
+    
+    %% Capa de Dominio
+    class CapaDominio {
+        <<Interface>>
+    }
+    
+    class Entidades {
+        +Proyecto
+        +Usuario
+        +Tarea
+        +Recurso
+    }
+    
+    class ServiciosDominio {
+        +validarReglasDominio()
+        +aplicarPoliticas()
+    }
+    
+    %% Capa de Infraestructura
+    class CapaInfraestructura {
+        <<Interface>>
+    }
+    
+    class Repositorios {
+        +obtenerDatos()
+        +guardarDatos()
+        +actualizarDatos()
+        +eliminarDatos()
+    }
+    
+    class ServiciosExternos {
+        +integrarAPIsExternas()
+        +sincronizarDatos()
+    }
+    
+    %% Patrones de Diseño
+    class PatronesDiseno {
+        <<Note>>
+        Factory (Creacional)
+        Facade (Estructural)
+        Observer (Comportamiento)
+    }
+    
+    %% Relaciones entre capas
+    CapaPresentacion <|-- InterfazWeb
+    CapaPresentacion <|-- AplicacionMovil
+    CapaPresentacion <|-- APIGateway
+    CapaPresentacion <|-- PortalAdmin
+    
+    CapaAplicacion <|-- GestionProyectos
+    CapaAplicacion <|-- GestionUsuarios
+    CapaAplicacion <|-- GestionTareas
+    CapaAplicacion <|-- Autenticacion
+    CapaAplicacion <|-- Notificaciones
+    CapaAplicacion <|-- Reportes
+    CapaAplicacion <|-- Calendario
+    CapaAplicacion <|-- Busqueda
+    
+    CapaIA <|-- PrediccionRetrasos
+    CapaIA <|-- OptimizacionFlujos
+    CapaIA <|-- Recomendaciones
+    CapaIA <|-- AnalisisPredictivo
+    
+    CapaDominio <|-- Entidades
+    CapaDominio <|-- ServiciosDominio
+    
+    CapaInfraestructura <|-- Repositorios
+    CapaInfraestructura <|-- ServiciosExternos
+    
+    %% Relaciones entre componentes de capas
+    CapaPresentacion --> CapaAplicacion : utiliza
+    CapaAplicacion --> CapaIA : utiliza
+    CapaAplicacion --> CapaDominio : utiliza
+    CapaIA --> CapaDominio : utiliza
+    CapaDominio --> CapaInfraestructura : utiliza
